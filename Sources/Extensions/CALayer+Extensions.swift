@@ -40,23 +40,15 @@ extension CALayer {
     
     func addMultilinesLayers(lines: Int, type: SkeletonType, lastLineFillPercent: Int, multilineCornerRadius: Int) {
         let numberOfSublayers = calculateNumLines(maxLines: lines)
-
-        let layerBuilder = SkeletonMultilineLayerBuilder()
-            .setSkeletonType(type)
-            .setCornerRadius(multilineCornerRadius)
-
-        (0..<numberOfSublayers).forEach { index in
+        for index in 0..<numberOfSublayers {
             var width = bounds.width
-            if index == numberOfSublayers - 1 && numberOfSublayers != 1 {
-                width = width * CGFloat(lastLineFillPercent) / 100;
+            
+            if index == numberOfSublayers-1 && numberOfSublayers != 1 {
+                width = width * CGFloat(lastLineFillPercent)/100;
             }
-
-            if let layer = layerBuilder
-                .setIndex(index)
-                .setWidth(width)
-                .build() {
-                addSublayer(layer)
-            }
+            
+            let layer = SkeletonLayerFactory().makeMultilineLayer(withType: type, for: index, width: width, multilineCornerRadius: multilineCornerRadius)
+            addSublayer(layer)
         }
     }
     
@@ -76,7 +68,7 @@ public extension CALayer {
         pulseAnimation.fromValue = backgroundColor
         pulseAnimation.toValue = UIColor(cgColor: backgroundColor!).complementaryColor.cgColor
         pulseAnimation.duration = 1
-        pulseAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        pulseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         pulseAnimation.autoreverses = true
         pulseAnimation.repeatCount = .infinity
         return pulseAnimation
@@ -94,7 +86,7 @@ public extension CALayer {
         let animGroup = CAAnimationGroup()
         animGroup.animations = [startPointAnim, endPointAnim]
         animGroup.duration = 1.5
-        animGroup.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
+        animGroup.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
         animGroup.repeatCount = .infinity
         
         return animGroup

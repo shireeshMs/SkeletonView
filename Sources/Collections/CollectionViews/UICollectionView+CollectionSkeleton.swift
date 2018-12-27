@@ -16,17 +16,17 @@ extension UICollectionView: CollectionSkeleton {
     }
     
     var skeletonDataSource: SkeletonCollectionDataSource? {
-        get { return ao_get(pkey: &CollectionAssociatedKeys.dummyDataSource) as? SkeletonCollectionDataSource }
+        get { return objc_getAssociatedObject(self, &CollectionAssociatedKeys.dummyDataSource) as? SkeletonCollectionDataSource }
         set {
-            ao_setOptional(newValue, pkey: &CollectionAssociatedKeys.dummyDataSource)
+            objc_setAssociatedObject(self, &CollectionAssociatedKeys.dummyDataSource, newValue, AssociationPolicy.retain.objc)
             self.dataSource = newValue
         }
     }
     
     var skeletonDelegate: SkeletonCollectionDelegate? {
-        get { return ao_get(pkey: &CollectionAssociatedKeys.dummyDelegate) as? SkeletonCollectionDelegate }
+        get { return objc_getAssociatedObject(self, &CollectionAssociatedKeys.dummyDelegate) as? SkeletonCollectionDelegate }
         set {
-            ao_setOptional(newValue, pkey: &CollectionAssociatedKeys.dummyDelegate)
+            objc_setAssociatedObject(self, &CollectionAssociatedKeys.dummyDelegate, newValue, AssociationPolicy.retain.objc)
             self.delegate = newValue
         }
     }
