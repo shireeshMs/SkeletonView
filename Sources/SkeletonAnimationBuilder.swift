@@ -2,7 +2,7 @@
 //  SkeletonAnimationBuilder.swift
 //  SkeletonView-iOS
 //
-//  Created by Juanpe Catalán on 17/11/2017.
+//  ReCreated by Shireesh on 10/12/2018.
 //  Copyright © 2017 SkeletonView. All rights reserved.
 //
 

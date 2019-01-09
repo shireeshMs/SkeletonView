@@ -11,8 +11,8 @@ import UIKit
 extension UIView {
     
     enum Constants {
-        static let becomeActiveNotification = Notification.Name.UIApplicationDidBecomeActive
-        static let enterForegroundNotification = Notification.Name.UIApplicationDidEnterBackground
+        static let becomeActiveNotification = NSNotification.Name.UIApplicationDidBecomeActive
+        static let enterForegroundNotification = NSNotification.Name.UIApplicationDidEnterBackground
         static let needAnimatedSkeletonKey = "needAnimateSkeleton"
     }
     

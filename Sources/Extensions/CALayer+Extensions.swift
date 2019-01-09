@@ -1,3 +1,4 @@
+
 //
 //  SkeletonLayer+Animations.swift
 //  SkeletonView-iOS
@@ -33,7 +34,7 @@ extension CAGradientLayer {
 extension CALayer {
     
     static let skeletonSubLayersName = "SkeletonSubLayersName"
-
+    
     var skeletonSublayers: [CALayer] {
         return sublayers?.filter { $0.name == CALayer.skeletonSubLayersName } ?? [CALayer]()
     }
@@ -62,7 +63,7 @@ extension CALayer {
 
 // MARK: Animations
 public extension CALayer {
-
+    
     var pulse: CAAnimation {
         let pulseAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.backgroundColor))
         pulseAnimation.fromValue = backgroundColor
